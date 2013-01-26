@@ -30,7 +30,7 @@ var walkSpeed = 2.0;
 // after trotAfterSeconds of walking we trot with trotSpeed
 var trotSpeed = 4.0;
 // when pressing "Fire3" button (cmd) we start running
-var runSpeed = 6.0;
+var runSpeed = 500.0;
 
 var inAirControlAcceleration = 3.0;
 
@@ -58,7 +58,7 @@ private var moveDirection = Vector3.zero;
 // The current vertical speed
 private var verticalSpeed = 0.0;
 // The current x-z move speed
-private var moveSpeed = 0.0;
+private var moveSpeed = 0.5;
 
 // The last collision flags returned from controller.Move
 private var collisionFlags : CollisionFlags; 
@@ -187,7 +187,7 @@ function UpdateSmoothedMovementDirection ()
 		//* We want to support analog input but make sure you cant walk faster diagonally than just forward or sideways
 		var targetSpeed = Mathf.Min(targetDirection.magnitude, 1.0);
 	
-		_characterState = CharacterState.Idle;
+		_characterState = CharacterState.Running;
 		
 		// Pick speed modifier
 		if (Input.GetKey (KeyCode.LeftShift) | Input.GetKey (KeyCode.RightShift))
