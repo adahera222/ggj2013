@@ -41,7 +41,7 @@ var jumpHeight = 0.5;
 var gravity = 20.0;
 // The gravity in controlled descent mode
 var speedSmoothing = 10.0;
-var rotateSpeed = 500.0;
+var rotateSpeed = 0.0;
 var trotAfterSeconds = 3.0;
 
 var canJump = true;
@@ -56,9 +56,9 @@ private var lockCameraTimer = 0.0;
 // The current move direction in x-z
 private var moveDirection = Vector3.zero;
 // The current vertical speed
-private var verticalSpeed = 0.0;
+private var verticalSpeed = 1.0;
 // The current x-z move speed
-private var moveSpeed = 0.0;
+private var moveSpeed = 30.0;
 
 // The last collision flags returned from controller.Move
 private var collisionFlags : CollisionFlags; 
@@ -176,7 +176,7 @@ function UpdateSmoothedMovementDirection ()
 			{
 				moveDirection = Vector3.RotateTowards(moveDirection, targetDirection, rotateSpeed * Mathf.Deg2Rad * Time.deltaTime, 1000);
 				
-				moveDirection = moveDirection.normalized;
+				//moveDirection = moveDirection.normalized;
 			}
 		}
 		
@@ -206,7 +206,7 @@ function UpdateSmoothedMovementDirection ()
 			_characterState = CharacterState.Walking;
 		}
 		
-		moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth);
+		//moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth);
 		
 		// Reset walk time start when we slow down
 		if (moveSpeed < walkSpeed * 0.3)
@@ -360,7 +360,7 @@ function Update() {
 	if (IsGrounded())
 	{
 		
-		transform.rotation = Quaternion.LookRotation(moveDirection);
+		//transform.rotation = Quaternion.LookRotation(moveDirection);
 			
 	}	
 	else
@@ -369,7 +369,7 @@ function Update() {
 		xzMove.y = 0;
 		if (xzMove.sqrMagnitude > 0.001)
 		{
-			transform.rotation = Quaternion.LookRotation(xzMove);
+			//transform.rotation = Quaternion.LookRotation(xzMove);
 		}
 	}	
 	
